@@ -1,7 +1,8 @@
 import streamlit as st
 import numpy as np
-import joblib
-model=joblib.load(open('musa.pkl','rb'))
+import pickle
+with open('musa.pkl','rb')as file:
+    model=pickle.load(file)
 
 st.title("taxi trip pricing prediction dashboard")
 st.write("Enter The following input to get prediction")
@@ -14,6 +15,7 @@ if st.button("Submit"):
     result=model.predict(input_data)
     #st.success("Predicted taxi trip pricing= ", result)
     st.success(f"Predicted taxi trip pricing: {result[0]:,.2f}$")    
+
 
 
 
